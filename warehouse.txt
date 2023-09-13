@@ -1,0 +1,10 @@
+955.0
+100.0
+apple
+2
+pear
+5
+cherry
+10
+
+end
