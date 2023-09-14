@@ -20,7 +20,7 @@ def storage_actions(manager):
         if mode == 3:
             print(f'Your current balance is {manager.balance}')
             return
-        manager.logs.append(manager)
+        manager.logs.append(f'balance changed by {manager.amount}')
 
 
     @manager.assign('purchase')
@@ -35,7 +35,7 @@ def storage_actions(manager):
         if manager.item not in manager.items:
             manager.items[manager.item] = 0
         manager.items[manager.item] += manager.quantity
-        manager.logs.append(manager)
+        manager.logs.append(f'purchased items: {manager.item}, price: {manager.price},qty: {manager.quantity}')
 
 
     @manager.assign('sale')
@@ -51,7 +51,7 @@ def storage_actions(manager):
         manager.price = float(input("Enter item price: "))
         manager.balance += manager.price * manager.quantity
         manager.items[manager.item] -= manager.quantity
-        manager.logs.append(manager)
+        manager.logs.append(f'sold items: {manager.item}, price: {manager.price},qty: {manager.quantity}')
 
 
     @manager.assign('list')
@@ -66,7 +66,7 @@ def storage_actions(manager):
         index_from = int(input("Please enter starting point of log: "))
         index_to = int(input("Please enter ending point of log: "))
         for log in manager.logs[index_from:index_to]:
-            log.print()
+            print(log)
 
 
     @manager.assign('search')

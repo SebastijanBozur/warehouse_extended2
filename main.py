@@ -44,8 +44,9 @@ class Manager:
                 file.write(f'{name}\n{qty}\n')
             file.write('\n')
             for log in self.logs:
-                log.save(file, self)
+                file.write( f'{log}\n')
             file.write('end\n')
+
 
     def load(self, file_path):
         with open(file_path) as file:
@@ -57,3 +58,8 @@ class Manager:
                     break
                 qty = int(file.readline())
                 self.items[name] = qty
+            while True:
+                log = file.readline().strip()
+                if not log or log == 'end':
+                    break
+                self.logs.append(log)
